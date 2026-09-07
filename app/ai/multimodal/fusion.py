@@ -68,16 +68,24 @@ def build_unified_text(
         if isinstance(text_result, str):
             parts.append(text_result)
 
-    if image_result and isinstance(image_result, dict):
-        analysis = image_result.get("analysis")
+    if image_result:
+        if isinstance(image_result, dict):
+            image_result = [image_result]
 
-        if analysis and isinstance(analysis, dict):
-            category = analysis.get("category")
+        if isinstance(image_result, list):
+            for image in image_result:
+                if not isinstance(image, dict):
+                    continue
 
-            if category:
-                parts.append(
-                    f"Image context: {category}"
-                )
+                analysis = image.get("analysis")
+
+                if analysis and isinstance(analysis, dict):
+                    category = analysis.get("category")
+
+                    if category:
+                        parts.append(
+                            f"Image context: {category}"
+                        )
 
     # Audio transcription
     if audio_result and isinstance(audio_result, dict):
