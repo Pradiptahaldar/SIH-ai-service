@@ -60,13 +60,13 @@ async def read_limited_file(file: UploadFile, max_size: int):
 
     return data
 
-
-
-
 app = FastAPI(
     title="SIH ai service",
     description="ai for sih 2026",
-    version="1.0.0"
+    version="1.0.0",
+    docs_url=None,
+    redoc_url=None,
+    openapi_url=None
 )
 app.add_middleware(
     CORSMiddleware,

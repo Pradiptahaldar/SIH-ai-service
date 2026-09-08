@@ -1,11 +1,5 @@
-from sentence_transformers import SentenceTransformer
+from app.ai.semantic.model import model
 import numpy as np
-
-
-MODEL_NAME = "all-MiniLM-L6-v2"
-
-model = SentenceTransformer(MODEL_NAME)
-
 
 def calculate_similarity(challenge_a: str, challenge_b: str):
     """

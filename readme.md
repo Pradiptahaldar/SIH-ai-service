@@ -555,6 +555,7 @@ Start the development server:
 
 ```powershell
 uvicorn app.main:app --reload
+uvicorn app.main:app(production based)
 ```
 
 The API will normally be available at:

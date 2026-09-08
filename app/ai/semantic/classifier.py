@@ -1,10 +1,5 @@
-from sentence_transformers import SentenceTransformer
 import numpy as np
-
-MODEL_NAME = "all-MiniLM-L6-v2"
-model = SentenceTransformer(MODEL_NAME)
-
-
+from app.ai.semantic.model import model
 CATEGORIES = {
     "disaster_management": {
         "label": "Disaster Management",
