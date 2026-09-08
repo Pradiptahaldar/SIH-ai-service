@@ -98,7 +98,7 @@ def root():
     return {"message": "ai service running"}
 
 @app.post("/analyze", dependencies=[Depends(verify_api_key)])
-@limiter.limit("10/minute")
+@limiter.limit("10/second")
 async def analyze(
     request: Request,
     challenge: str = Query(..., min_length=1, max_length=MAX_CHALLENGE_LENGTH),
@@ -149,7 +149,7 @@ async def analyze(
         audio_result=audio_result
     )
 @app.post("/similarity", dependencies=[Depends(verify_api_key)])
-@limiter.limit("20/minute")
+@limiter.limit("20/second")
 async def similarity(
     request: Request,
     challenge: str | None = Form(None),
@@ -209,7 +209,7 @@ async def similarity(
         existing_challenges=existing_list
     )
 @app.post("/upload-image", dependencies=[Depends(verify_api_key)])
-@limiter.limit("10/minute")
+@limiter.limit("10/second")
 async def upload_image(
     request: Request,
     files: list[UploadFile] = File(
@@ -248,7 +248,7 @@ async def upload_image(
 
 
 @app.post("/upload-audio", dependencies=[Depends(verify_api_key)])
-@limiter.limit("10/minute")
+@limiter.limit("10/second")
 async def upload_audio(request: Request,
                        file: UploadFile = File(...)):
     validate_content_type(file, ALLOWED_AUDIO_TYPES)
